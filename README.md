@@ -5,11 +5,11 @@
 
 ## 📁 프로젝트 구성
 
-- **20260108_Coffe Machine Program**
+- **01 Coffee Machine Program**
   - 콘솔 기반 커피 머신 프로그램
   - 조건문, 함수, 딕셔너리 활용
 
-- **20260114_Address Program**
+- **02 Address Program**
   - 주소록 관리 프로그램
   - 클래스, 리스트, 파일 처리 연습
 
