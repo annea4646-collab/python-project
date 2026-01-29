@@ -44,6 +44,14 @@ class StudentScoreReport:
 
     def add_to_db(self, s):
         try:
+        # 1. 먼저 DB에 몇 명이 있는지 확인
+            self.cursor.execute("SELECT COUNT(*) FROM students")
+            count = self.cursor.fetchone()[0]
+
+            if count >= 10:
+                print(" DB 저장 용량이 가득 찼습니다. (전체 최대 10명)")
+                return
+
             # SQL 쿼리로 데이터 삽입
             sql = """
                 INSERT INTO students (id, name, kor, eng, math, total, avg) 
@@ -81,16 +89,17 @@ class StudentScoreReport:
 
 report = StudentScoreReport()
 
-while True:
-     name, korscore, engscore, mathscore = report.input_data()
-     new_student = Student(name, korscore, engscore, mathscore)
+if __name__ == "__main__":
+    while True:
+        name, korscore, engscore, mathscore = report.input_data()
+        new_student = Student(name, korscore, engscore, mathscore)
 
-     report.add_list(new_student)   
-     report.add_to_db(new_student)  # SQL DB에 추가
+        report.add_list(new_student)   
+        report.add_to_db(new_student)  # SQL DB에 추가
 
-     menu = input("\n 계속 입력하시겠습니까? (y/n): ")
-     if menu.lower() != 'y':
-          break
+        menu = input("\n 계속 입력하시겠습니까? (y/n): ")
+        if menu.lower() != 'y':
+            break
      
 print("### Score Report ###")
 print("국어\t영어\t수학\t|\t총합\t평균")
@@ -100,3 +109,7 @@ for s in report.student_list:
      print(f"{s.korscore}\t{s.engscore}\t{s.mathscore}\t|\t{s.total_score()}\t{s.avg_score():.0f}")
 
 report.close_db()
+
+
+
+
