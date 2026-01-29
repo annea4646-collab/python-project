@@ -17,6 +17,7 @@
 
 - Python 3.11
 - Windows 10
+- Tahoe 26.1
 - Git / GitHub
 
 ## ✍️ 학습 목적
